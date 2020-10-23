@@ -1,0 +1,29 @@
+*{
+    padding:0px;
+    margin:0px;
+    color:white;
+}
+h1{
+    color:black;
+    text-align: center;
+    padding:10px;
+}
+.container{
+    padding-top:60px;
+    width:500px;
+    margin:auto;
+}input{
+    font-size:18px;
+    color:black;
+    width:100%;
+    padding:5px 4px;
+    margin:5px;
+}
+li{
+    list-style-type:none;
+    background-color: #000;
+}
+input[type="submit"]{
+    background-color: red;
+    color:whitesmoke;
+}

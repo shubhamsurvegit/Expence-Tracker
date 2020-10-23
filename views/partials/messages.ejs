@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/5c174d451e.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    li{
+        list-style-type: none;
+        background-color: burlywood;
+        text-align: left;
+        padding:8px;
+    }
+
+    i{
+        color:red;
+        float:right;
+    }
+</style>
+<body>
+    <% if(typeof errors !='undefined'){ %>
+        <ul>
+            <% errors.forEach(i=>{ %>
+                <li><%= i.msg %> <i class="fa fa-remove" onclick="remu(this)" id="btn"></i></li>
+            <%}); %>
+        </ul>
+    <% } %>
+</body>
+
+
+<script>
+    function remu(e){
+        e.parentElement.remove();
+    }
+</script>
+</html>
+

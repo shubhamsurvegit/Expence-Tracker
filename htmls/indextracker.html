@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expence-tracker</title>
+    <link rel="stylesheet" type="text/css" href="styletracker.css">
+    <script src="https://kit.fontawesome.com/5c174d451e.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <h1 style="text-align: center;">Expense Traker</h1>
+    <div class="container">
+     
+        <h3>Your Balance</h3>
+        <h1 id="balance">Rs 0.00</h1>
+        
+        <div class="showcase">
+            <div>
+                <p>INCOME</p>
+                <p id="income" style="color: green;"> Rs 0.00</p>
+            </div>
+            <div>
+                <p>EXPENSE</p>
+                <p id="expence" style="color: red;">  Rs 0.00</p>
+            </div>
+        </div>
+
+        <div class="transaction">
+            <p>History</p>
+            <ul class="list">
+            </ul>
+        </div>
+
+        <p>Add new transaction</p>
+        <form class="form" action='/users' method="POST">
+            <input id="text" type="text" placeholder="text" name="text">
+            <input id="amount" type="number" placeholder="amount" name="amount">
+            <input id="btn" type="submit" placeholder="add transaction">
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</body>
+</html>
+<script src="scripttracker.js"></script>
+<script src="http://wzrd.in/standalone/uuid%2Fv4@latest"></script>

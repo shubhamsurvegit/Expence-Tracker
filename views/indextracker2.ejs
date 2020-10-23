@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="expires" content="timestamp">
+    <title>Expence-tracker</title>
+    <script src="https://kit.fontawesome.com/5c174d451e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/htmls/styletracker.css">
+</head>
+
+<body>
+    <h1 style="text-align: center;">Expense Traker</h1>
+    <a style="padding-left: 1250px;" href="/user/logout">Logout</a>
+    <div class="container">
+       
+        <h3><%=user.name%>'s Balance</h3>
+        <h1 id="balance">Rs <%=user.balance%></h1>
+        
+        <div class="showcase">
+            <div>
+                <p>INCOME</p>
+                <p id="income" style="color: green;">Rs <%=user.income%></p>
+            </div>
+            <div>
+                <p>EXPENSE</p>
+                <p id="expence" style="color: red;">Rs <%=user.expence%></p>
+            </div>
+        </div>
+
+        <div class="transaction">
+            <p>History</p>
+            <ul class="list">
+                <% user.transactions.forEach((i)=>{%>
+                    <% const color=i.itemvalue<'0' ? "red":"green"%>
+                    <%const colour=JSON.stringify(color)%>
+                    <%if(color=="green"){%>
+                        <li><strong><%=i.id%></strong><%=i.itemname%><span style="color: green;">+Rs <%=i.itemvalue%></span>
+                        <i style="color:red;padding-left:25px;" class="fa fa-remove" onclick="remove(this,'<%=useremail%>')"></i></li>
+                    <%}%>
+                    <%if(color=="red"){%>
+                        <li><strong><%=i.id%></strong><%=i.itemname%><span style="color: red;">-Rs <%=i.itemvalue%></span>
+                        <i style="color:red;padding-left:25px;" class="fa fa-remove" onclick="remove(this,'<%=useremail%>')"></i></a></li>
+                    <%}%>
+                <%})%>
+            </ul>
+        </div>
+
+        <p>Add new transaction</p>
+        <%- include ('partials/messages') %>
+        <form class="form" action='/api/users?email=<%=useremail%>' method="POST">
+            <input id="text" type="text" placeholder="text" name="text">
+            <input id="amount" type="number" placeholder="amount" name="amount">
+            <input id="buton" type="submit" value="Save">
+        </form>
+    </div>
+
+</body>
+</html>
+<script src="/htmls/scripttracker.js"></script>
+<script type="text/javascript"> 
+    window.history.forward(); 
+    function noBack() { 
+        window.history.forward(); 
+    } 
+</script> 

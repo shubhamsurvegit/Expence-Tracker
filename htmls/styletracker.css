@@ -1,0 +1,92 @@
+*{
+    padding:0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+p{
+    font-weight: bold;
+}
+
+
+.container{
+    max-width: 30%;
+    margin:50px auto;
+}
+
+.showcase{
+    display: grid;
+    border:1px solid bisque;
+    grid-template-columns: auto auto;
+    margin:10px 5px;
+    padding:20px 27px;
+    text-align: center;
+}
+
+.showcase p{
+    padding-bottom: 10px;
+}
+
+.transaction{
+    margin-top:10px;
+}
+
+.transaction li{
+    list-style-type: none;
+    padding:8px;
+    margin-bottom:5px;
+    background-color: bisque;
+    display: flex;
+}
+
+.transaction p{
+    padding:10px 0px;
+}
+
+.green{
+    color: green;
+}
+
+.red{
+    color:red;
+}
+
+.list li{
+    justify-content: space-evenly;
+}
+
+.list i{
+    justify-content: end;
+}
+
+p{
+    padding:20px 0px;
+}
+
+#ico{
+    color:green;
+    float: right;
+}
+
+.form{
+    width:70%;
+    margin:auto;
+}
+
+.form input{
+    width: 100%;
+    padding:9px;
+    margin:5px;
+    background-color: bisque;
+    border: none;
+}
+
+
+.form #btn{
+    background-color: palevioletred;
+    border: none;
+}
+
+#buton{
+    background-color: palevioletred;
+}
