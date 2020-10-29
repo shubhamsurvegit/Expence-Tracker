@@ -11,7 +11,7 @@
 
 <body>
     <h1 style="text-align: center;">Expense Traker</h1>
-    <a style="padding-left: 1250px;" href="/user/logout">Logout</a>
+    <a class="logout" href="/user/logout">Logout</a>
     <div class="container">
        
         <h3><%=user.name%>'s Balance</h3>
@@ -29,9 +29,16 @@
         </div>
 
         <div class="transaction">
+            <div class="links">
+                <a class="green" href="/incometransactions?email=<%=useremail%>">Income transaction</a>
+                <a class="black" href="/alltransactions?email=<%=useremail%>">All transaction</a>
+                <a class="red" href="/expencetransactions?email=<%=useremail%>">Expence transaction</a>
+            </div>
+
             <p>History</p>
             <ul class="list">
-                <% user.transactions.forEach((i)=>{%>
+                <%const len=user.transactions.length>5?user.transactions.length-5:0 %>
+                <% user.transactions.slice(len,user.transactions.length).reverse().forEach((i)=>{%>
                     <% const color=i.itemvalue<'0' ? "red":"green"%>
                     <%const colour=JSON.stringify(color)%>
                     <%if(color=="green"){%>

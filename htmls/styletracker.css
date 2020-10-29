@@ -11,7 +11,14 @@ p{
 
 .container{
     max-width: 30%;
-    margin:50px auto;
+    margin:40px auto;
+}
+
+.logout{
+    padding-left: 1100px;
+    color:red;
+    font-size: 20px;
+    text-decoration: none;
 }
 
 .showcase{
@@ -27,6 +34,17 @@ p{
     padding-bottom: 10px;
 }
 
+
+.links{
+    display:grid;
+    grid-template-columns: auto auto auto;
+    grid-gap:28px;
+    margin:10px 0px;
+}
+
+.links a{
+    text-decoration: none;
+}
 .transaction{
     margin-top:10px;
 }
@@ -60,7 +78,7 @@ p{
 }
 
 p{
-    padding:20px 0px;
+    padding:15px 0px;
 }
 
 #ico{

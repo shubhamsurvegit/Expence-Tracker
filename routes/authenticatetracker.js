@@ -4,6 +4,8 @@ const bodyparser=require('body-parser')
 const bcrypt=require('bcryptjs');
 const User=require('../models/expencetrackerschema')
 
+
+
 const bodyparserurl=bodyparser.urlencoded({extended:false})
 
 router.get('/login',(req,res)=>res.render('trackerlogin'));
@@ -44,6 +46,7 @@ router.post('/register',bodyparserurl,(req,res)=>{
                 bcrypt.hash(data.password,salt,(err,hash)=>{
                     if (err) throw err;
                     data.password=hash;
+                    req.session.userid=data._id;
                     User.create(data)
                     .then((data)=>res.redirect('/users? name='+data.name+'&email='+data.email))
                     .catch((err)=>res.send(err));
@@ -67,6 +70,7 @@ router.post('/login',bodyparserurl,(req,res)=>{
                 bcrypt.compare(req.body.password,userdata.password,(err,isMatch)=>{
                     if (err) throw err;
                     if(isMatch){
+                        req.session.userid=userdata._id;
                         res.redirect('/usersfromlogin?email='+req.body.email);
                     }
                     else{
@@ -85,6 +89,7 @@ router.post('/login',bodyparserurl,(req,res)=>{
 })
 
 router.get('/logout',(req,res)=>{
+    delete req.session.userid;
     const errors=[];
     errors.push({msg:"You are logged out"})
     res.redirect('/user/login');

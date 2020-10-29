@@ -7,13 +7,14 @@ const { v1: uuidv1 } = require('uuid');
 
 
 
+
 const bodyparserurl=bodyparser.urlencoded({extended:false})
 
 router.get('/users',(req,res)=>{
     res.render('indextracker',{username:Object.values(req.query)[0],useremail:Object.values(req.query)[1]});
 })
 
-router.get('/usersfromlogin',(req,res)=>{
+router.get('/usersfromlogin',checkauth,(req,res)=>{
     const email=req.query.email;
     User.findOne({email:email})
     .then((userdata)=>{
@@ -22,7 +23,7 @@ router.get('/usersfromlogin',(req,res)=>{
     .catch((err)=>res.send(err));
 })
 
-router.get('/removetransaction',(req,res)=>{
+router.get('/removetransaction',checkauth,(req,res)=>{
     const email=Object.values(req.query)[0];
     const id=Object.values(req.query)[1];
     User.findOne({email:email})
@@ -46,7 +47,7 @@ router.get('/removetransaction',(req,res)=>{
     
 })
 
-router.post('/api/users',bodyparserurl,(req,res)=>{
+router.post('/api/users',checkauth,bodyparserurl,(req,res)=>{
     if(req.body.text && req.body.amount){
         const email=Object.values(req.query)[0];
         User.findOne({email:email})
@@ -85,4 +86,15 @@ router.post('/api/users',bodyparserurl,(req,res)=>{
         .catch((err)=>res.send(err));
     }
 });
+
+function checkauth(req,res,next){
+    if(req.session.userid){
+        next();
+    }
+    else{
+        res.redirect('/user/login');
+    }
+}
+
+
 module.exports=router;

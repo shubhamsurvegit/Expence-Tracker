@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/5c174d451e.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    .container{
+        max-width: 60%;
+        margin:50px auto;
+    }
+
+    .top{
+        height: 60px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap:100px;
+    }
+
+    .link{
+        margin-top: 40px;
+        text-decoration: none;
+    }
+
+    h2{
+        padding-left:180px;
+        padding-bottom:10px ;
+    }
+    li{
+        list-style-type: none;
+        padding:8px;
+        margin-bottom:5px;
+        background-color: bisque;
+        display: flex;
+        justify-content:space-around;
+        width:650px;
+    }
+
+    ul{
+        margin:auto;
+    }
+    p{
+        font-size: 20px;
+        color:green;
+        padding-left: 180px;
+    }
+
+    span{
+        justify-content: end;
+    }
+
+    .tarik{
+        font-size: 13px;
+    }
+</style>
+<body>
+    <h1 style="text-align: center;">Expense Traker</h1>
+    <div class="container">
+        <div class="top">
+            <h2 id="balance">Your Balance Rs <%=user.balance%></h2>
+            <a href='/usersfromlogin?email=<%=user.email%>' class="fas fa-home fa-2x"></a>
+        </div>
+       
+        <p>Your Transactions</p>
+            <ul>
+                <%transactions.forEach((i)=>{%>
+                    <% const color=i.itemvalue<'0' ? "red":"green"%>
+                    <%const colour=JSON.stringify(color)%>
+                    <%if(color=="green"){%>
+                        <li><strong class="tarik"><%=user.date%></strong><strong class="getid"><%=i.id%></strong><%=i.itemname%><span style="color: green;">Rs <%=i.itemvalue%></span>
+                        <i style="color: red;" class="fa fa-remove" onclick="removee(this,'<%=user.email%>')"></i></li>
+                    <%}%>   
+                    <%if(color=="red"){%>
+                        <li><strong class="tarik"><%=user.date%></strong><strong><%=i.id%></strong><%=i.itemname%><span style="color: red;">Rs <%=i.itemvalue%></span>
+                            <i style="color:red;" class="fa fa-remove" onclick="removee(this,'<%=user.email%>')"></i></li>
+                    <%}%> 
+                <%})%>
+            </ul>
+    </div>
+</body>
+</html>
+<script src="/htmls/scripttracker.js"></script>

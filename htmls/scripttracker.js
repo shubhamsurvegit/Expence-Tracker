@@ -48,7 +48,6 @@ btn.addEventListener("click",addtransaction);
         }
 
     function remove(e,email){
-
         const listtext=e.parentElement.textContent;
         console.log(listtext)  
         var id="";
@@ -65,3 +64,24 @@ btn.addEventListener("click",addtransaction);
         e.parentElement.remove();
     }
 
+    function removee(e,email){
+        const listtext=e.parentElement.textContent;
+        var id="";
+        var j=0;
+        while(listtext.charAt(j)!=')'){
+            j++;
+        }
+        console.log(listtext.charAt(j))
+        for(let i=j+1;i<j+5;i++){
+            if(listtext.charAt(i)!=' '){
+                id=id+listtext.charAt(i);
+            }
+            else{
+                break;
+            }
+        }
+        console.log(id);
+        console.log(email);
+        window.location.href='/removeetransaction?email='+email+'&id='+id
+        console.log(id);
+    }
