@@ -46,9 +46,11 @@ router.post('/register',bodyparserurl,(req,res)=>{
                 bcrypt.hash(data.password,salt,(err,hash)=>{
                     if (err) throw err;
                     data.password=hash;
-                    req.session.userid=data._id;
                     User.create(data)
-                    .then((data)=>res.redirect('/users? name='+data.name+'&email='+data.email))
+                    .then((data)=>{
+                        req.session.userid=data._id;
+                        res.redirect('/users? name='+data.name+'&email='+data.email);
+                    })
                     .catch((err)=>res.send(err));
                 }))
             }

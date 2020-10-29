@@ -1,5 +1,5 @@
 const btn=document.getElementById("btn")
-btn.addEventListener("click",addtransaction);
+// btn.addEventListener("click",addtransaction);
 
         function addtransaction(e){
             e.preventDefault();

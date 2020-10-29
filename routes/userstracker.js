@@ -10,7 +10,8 @@ const { v1: uuidv1 } = require('uuid');
 
 const bodyparserurl=bodyparser.urlencoded({extended:false})
 
-router.get('/users',(req,res)=>{
+router.get('/users',checkauth,(req,res)=>{
+
     res.render('indextracker',{username:Object.values(req.query)[0],useremail:Object.values(req.query)[1]});
 })
 
@@ -92,6 +93,7 @@ function checkauth(req,res,next){
         next();
     }
     else{
+        console.log(req.url);
         res.redirect('/user/login');
     }
 }
