@@ -46,7 +46,7 @@
     <div class="container">
         <div class="top">
             <h2 id="balance">Your Balance Rs <%=user.balance%></h2>
-            <a href='/usersfromlogin?email=<%=user.email%>' class="fas fa-home fa-2x"></a>
+            <a href='/home' class="fas fa-home fa-2x"></a>
         </div>
         <p>Your Transactions</p>
             <ul>
@@ -54,11 +54,11 @@
                     <% const color=i.itemvalue<'0' ? "red":"green"%>
                     <%const colour=JSON.stringify(color)%>
                     <%if(color=="green"){%>
-                        <li><strong><%=i.id%></strong><%=i.itemname%><span style="color: green;">Rs <%=i.itemvalue%></span>
+                        <li><%=i.itemname%><span style="color: green;">Rs <%=i.itemvalue%></span>
                        </li>
                     <%}%>   
                     <%if(color=="red"){%>
-                        <li><strong><%=i.id%></strong><%=i.itemname%><span style="color: red;">Rs <%=i.itemvalue%></span>
+                        <li><%=i.itemname%><span style="color: red;">Rs <%=i.itemvalue%></span>
                         </li>
                     <%}%> 
                 <%})%>

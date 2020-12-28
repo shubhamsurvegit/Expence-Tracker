@@ -7,7 +7,7 @@ const e = require('express');
 const bodyparserurl=bodyparser.urlencoded({extended:false})
 
 router.get('/incometransactions',checkauth,(req,res)=>{
-    User.findOne({email:req.query.email})
+    User.findOne({_id:req.session.userid})
     .then((userdata)=>{
         const incometransactions=userdata.transactions.filter((i)=>i.itemvalue>0);
         res.render('showtrackerforie',{user:userdata,transactions:incometransactions});
@@ -16,7 +16,7 @@ router.get('/incometransactions',checkauth,(req,res)=>{
 })
 
 router.get('/expencetransactions',checkauth,(req,res)=>{
-    User.findOne({email:req.query.email})
+    User.findOne({_id:req.session.userid})
     .then((userdata)=>{
         const expencetransactions=userdata.transactions.filter((i)=>i.itemvalue<0);
         res.render('showtrackerforie',{user:userdata,transactions:expencetransactions});
@@ -25,7 +25,7 @@ router.get('/expencetransactions',checkauth,(req,res)=>{
 })
 
 router.get('/alltransactions',checkauth,(req,res)=>{
-    User.findOne({email:req.query.email})
+    User.findOne({_id:req.session.userid})
     .then((userdata)=>{
         res.render('showtrackerforall',{user:userdata,transactions:userdata.transactions});
     })

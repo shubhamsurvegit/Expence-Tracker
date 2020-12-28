@@ -2,7 +2,8 @@ const express=require('express');
 const router=express.Router();
 const bodyparser=require('body-parser')
 const bcrypt=require('bcryptjs');
-const User=require('../models/expencetrackerschema')
+const User=require('../models/expencetrackerschema');
+const { runInNewContext } = require('vm');
 
 
 
@@ -49,7 +50,7 @@ router.post('/register',bodyparserurl,(req,res)=>{
                     User.create(data)
                     .then((data)=>{
                         req.session.userid=data._id;
-                        res.redirect('/users? name='+data.name+'&email='+data.email);
+                        res.redirect('/home');
                     })
                     .catch((err)=>res.send(err));
                 }))
@@ -73,7 +74,7 @@ router.post('/login',bodyparserurl,(req,res)=>{
                     if (err) throw err;
                     if(isMatch){
                         req.session.userid=userdata._id;
-                        res.redirect('/usersfromlogin?email='+req.body.email);
+                        res.redirect('/home');
                     }
                     else{
                         errors.push({msg:"Incorrect Password"})

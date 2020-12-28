@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/5c174d451e.js" crossorigin="anonymous"></script>
 </head>
 <style>
     .container{
-        max-width: 60%;
+        max-width: 65%;
         margin:50px auto;
     }
 
@@ -54,30 +55,61 @@
     .tarik{
         font-size: 13px;
     }
+
+    .table{
+        margin:auto;
+        margin-bottom: 10px;
+    }
+
+
+    th,td ,tr{
+        padding: 20px 55px;
+    }
+
+    td{
+        padding:20px;
+    }
+
+    tr{
+        border: 2px solid orange;
+    }
 </style>
 <body>
     <h1 style="text-align: center;">Expense Traker</h1>
     <div class="container">
         <div class="top">
-            <h2 id="balance">Your Balance Rs <%=user.balance%></h2>
-            <a href='/usersfromlogin?email=<%=user.email%>' class="fas fa-home fa-2x"></a>
+            <h2>Your Balance Rs <span id="balance"><%=user.balance%></span></h2>
+            <a href='/home' class="fas fa-home fa-2x"></a>
         </div>
        
         <p>Your Transactions</p>
-            <ul>
+  
+
+            <table class="table">
+         
                 <%transactions.forEach((i)=>{%>
                     <% const color=i.itemvalue<'0' ? "red":"green"%>
                     <%const colour=JSON.stringify(color)%>
                     <%if(color=="green"){%>
-                        <li><strong class="tarik"><%=user.date%></strong><strong class="getid"><%=i.id%></strong><%=i.itemname%><span style="color: green;">Rs <%=i.itemvalue%></span>
-                        <i style="color: red;" class="fa fa-remove" onclick="removee(this,'<%=user.email%>')"></i></li>
+                        <tr>
+                        <td><%=user.date%></td>
+                        <td style="display: none;"><%=i.id%></td>
+                        <td style="font-weight: 700;"><%=i.itemname%></td>
+                        <td style="color: green;">Rs <span class="value"><%=i.itemvalue%></span></td>
+                        <td><i style="color: red;" class="fa fa-remove" onclick="removee(this,'<%=user.email%>')"></i></td>
+                        </tr>
                     <%}%>   
                     <%if(color=="red"){%>
-                        <li><strong class="tarik"><%=user.date%></strong><strong><%=i.id%></strong><%=i.itemname%><span style="color: red;">Rs <%=i.itemvalue%></span>
-                            <i style="color:red;" class="fa fa-remove" onclick="removee(this,'<%=user.email%>')"></i></li>
+                        <tr>
+                        <td><%=user.date%></td>
+                        <td style="display: none;"><%=i.id%></td>
+                        <td style="font-weight: 700;"><%=i.itemname%></td>
+                        <td style="color: red;">Rs <span class="value"><%=i.itemvalue%></span></td>
+                        <td><i style="color: red;" class="fa fa-remove" onclick="removee(this,'<%=user.email%>')"></i></td>
+                        </tr>
                     <%}%> 
                 <%})%>
-            </ul>
+            </table>
     </div>
 </body>
 </html>

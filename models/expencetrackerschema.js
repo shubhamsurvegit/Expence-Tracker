@@ -25,7 +25,6 @@ const Userschema=new mongoose.Schema({
         required:true,
     },
     transactions:[{
-            id:String,
             itemname:String,
             itemvalue:Number
     }],
